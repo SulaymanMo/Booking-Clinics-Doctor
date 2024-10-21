@@ -16,7 +16,7 @@ class AppointmentCubit extends Cubit<AppointmentState> {
   List<Booking> completed = [];
   List<Booking> compined = [];
   final FirebaseAuthService _authService;
-  WeeklyBookingData weeklyData = WeeklyBookingData();
+  WeeklyBookingData? weeklyData = WeeklyBookingData();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   AppointmentCubit(this._authService) : super(AppointmentInitial());
 
@@ -108,10 +108,19 @@ class AppointmentCubit extends Cubit<AppointmentState> {
     }
   }
 
+  void onRefreshAppointment() {
+    canceled.clear();
+    pending.clear();
+    compined.clear();
+    completed.clear();
+    weeklyData = null;
+  }
+
   // ! Get bookings when open the page first time
   Future<void> fetchBookings() async {
-    emit(AppointmentLoading());
     try {
+      emit(AppointmentLoading());
+      onRefreshAppointment();
       final snapshot = await _doctorDoc;
       if (snapshot.exists) {
         DoctorModel doctor = DoctorModel.fromJson(
@@ -227,7 +236,7 @@ class AppointmentCubit extends Cubit<AppointmentState> {
     if (bookingDate.isAfter(startOfWeek.subtract(const Duration(days: 1))) &&
         bookingDate.isBefore(endOfWeek.add(const Duration(days: 1)))) {
       double dayOfWeek = _getDay(bookingDate);
-      weeklyData.updateBooking(dayOfWeek, booking.bookingStatus);
+      weeklyData?.updateBooking(dayOfWeek, booking.bookingStatus);
     }
   }
 

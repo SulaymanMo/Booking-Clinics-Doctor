@@ -1,6 +1,5 @@
 import 'package:booking_clinics_doctor/core/common/see_all.dart';
 import 'package:booking_clinics_doctor/core/common/skeleton.dart';
-import 'package:booking_clinics_doctor/core/helper/onrefresh.dart';
 import 'package:booking_clinics_doctor/features/home/ui/view/see_all_view.dart';
 import 'package:booking_clinics_doctor/features/profile/manager/profile_manager/profile_cubit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -21,7 +20,8 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: () async => await onRefreshAppointment(context),
+      onRefresh: () async =>
+          await context.read<AppointmentCubit>().fetchBookings(),
       child: ListView(
         padding: EdgeInsets.only(
           left: 6.w,
@@ -101,7 +101,7 @@ class HomeView extends StatelessWidget {
             ),
           ),
           CustomBarChart(
-            weeklyData: context.read<AppointmentCubit>().weeklyData,
+            weeklyData: context.read<AppointmentCubit>().weeklyData!,
           ),
           SizedBox(height: 4.h),
           ListHeader(

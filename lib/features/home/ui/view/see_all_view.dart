@@ -2,7 +2,6 @@ import 'package:booking_clinics_doctor/core/common/skeleton.dart';
 import 'package:booking_clinics_doctor/features/appointment/manager/appointment_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../core/helper/onrefresh.dart';
 import '../../../../data/models/booking.dart';
 import '../widget/booking_card.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,8 @@ class SeeAllView extends StatelessWidget {
           if (state is AppointmentSuccess) {
             final List<Booking> todayBooking = read.getTodayBookings();
             return RefreshIndicator(
-              onRefresh: () async => await onRefreshAppointment(context),
+              onRefresh: () async =>
+                  await context.read<AppointmentCubit>().fetchBookings(),
               child: ListView.builder(
                 itemCount: todayBooking.length,
                 padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
