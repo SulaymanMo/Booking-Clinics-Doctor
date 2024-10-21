@@ -2,6 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:sizer/sizer.dart';
+import '../../../core/common/input.dart';
 import '../cubit/chat_details_cubit.dart';
 import '../cubit/chat_details_state.dart';
 import 'widgets/message_card.dart';
@@ -23,7 +26,8 @@ class ChatDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ChatDetailCubit(FirebaseFirestore.instance, chatId)..listenToMessages(),
+      create: (context) => ChatDetailCubit(FirebaseFirestore.instance, chatId)
+        ..listenToMessages(),
       child: Scaffold(
         appBar: AppBar(title: Text(chatPartnerName)),
         body: Padding(
@@ -71,31 +75,33 @@ class ChatDetailScreen extends StatelessWidget {
 
   Widget _buildMessageInput(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.5.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             flex: 6,
-            child: TextField(
+            child: Input(
+              hint: "Type a message...",
               controller: _messageController,
-              decoration: const InputDecoration(hintText: 'Type a message...'),
             ),
           ),
-          IconButton(
-            icon: const Icon(Icons.send_rounded, color: Colors.blue),
-            onPressed: () {
-              String message = _messageController.text;
-              String userId = FirebaseAuth.instance.currentUser!.uid;
-              _messageController.clear();
+          SizedBox(width: 4.w),
+          Expanded(
+            child: IconButton(
+              icon: const Icon(Iconsax.send_1),
+              onPressed: () {
+                String message = _messageController.text;
+                String userId = FirebaseAuth.instance.currentUser!.uid;
+                _messageController.clear();
 
-              // Send message using Cubit
-              context.read<ChatDetailCubit>().sendMessage(message, userId);
-            },
+                // Send message using Cubit
+                context.read<ChatDetailCubit>().sendMessage(message, userId);
+              },
+            ),
           ),
         ],
       ),
     );
   }
 }
-

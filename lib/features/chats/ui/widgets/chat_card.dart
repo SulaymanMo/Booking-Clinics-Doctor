@@ -23,24 +23,22 @@ class ChatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = context.theme.brightness == Brightness.dark;
     return Material(
       borderRadius: BorderRadius.circular(10),
-      color: MyColors.primary,
+      color: isDark ? ConstColor.iconDark.color : ConstColor.secondary.color,
       child: InkWell(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(4.w),
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+          padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                chatPartnerName,
-                style: context.semi16!.copyWith(color: Colors.black),
-              ),
+              Text(chatPartnerName, style: context.semi16),
               SizedBox(height: 1.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -48,14 +46,22 @@ class ChatCard extends StatelessWidget {
                   Flexible(
                     child: Text(
                       lastMessage,
-                      style: context.bold14!.copyWith(color: Colors.black),
+                      style: context.regular14!.copyWith(
+                        color: isDark
+                            ? ConstColor.secondary.color
+                            : ConstColor.textBtn.color,
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   Text(
                     lastMessageTime,
-                    style: context.regular14!.copyWith(color: Colors.black),
+                    style: context.regular14!.copyWith(
+                      color: isDark
+                          ? ConstColor.secondary.color
+                          : ConstColor.textBtn.color,
+                    ),
                   ),
                 ],
               ),
