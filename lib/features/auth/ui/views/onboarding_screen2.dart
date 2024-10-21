@@ -1,6 +1,7 @@
 import 'package:booking_clinics_doctor/core/constant/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:sizer/sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/constant/const_color.dart';
 import '../../../../core/constant/const_string.dart';
@@ -91,15 +92,16 @@ class OnboardingDotNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    final isDark = context.theme.brightness == Brightness.dark;
     return Positioned(
-      bottom: 40,
-      left: 25,
+      left: 6.w,
+      bottom: 4.5.h,
       child: SmoothPageIndicator(
         controller: controller,
         count: 3,
         effect: ExpandingDotsEffect(
-          dotHeight: 6,
+          dotWidth: 4.w,
+          dotHeight: 1.h,
           activeDotColor: isDark ? ConstColor.primary.color : Colors.black,
         ),
       ),
@@ -115,10 +117,10 @@ class NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 25,
-      right: 25,
+      right: 6.w,
+      bottom: 4.h,
       child: SizedBox(
-        height: 57,
+        height: 7.h,
         child: ElevatedButton(
           onPressed: () => onNext(),
           style: ElevatedButton.styleFrom(shape: const CircleBorder()),
@@ -137,16 +139,15 @@ class SkipButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 30,
-      right: 10,
+      // top: context.query.viewPadding.top + 0.5.h,
+      left: 6.w,
+      bottom: 6.5.h,
       child: TextButton(
           onPressed: () => onSkip(),
-          child: const Text(
+          child: Text(
             "Skip",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-              color: MyColors.dark,
+            style: context.medium14?.copyWith(
+              color: ConstColor.primary.color,
             ),
           )),
     );

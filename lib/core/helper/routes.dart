@@ -1,16 +1,11 @@
 import 'package:booking_clinics_doctor/core/constant/const_string.dart';
-import 'package:booking_clinics_doctor/core/helper/service_locator.dart';
 import 'package:booking_clinics_doctor/features/auth/ui/views/onboarding_screen2.dart';
 import 'package:booking_clinics_doctor/features/auth/ui/views/signin.dart';
 import 'package:booking_clinics_doctor/features/auth/ui/views/signup.dart';
 import 'package:booking_clinics_doctor/features/chats/ui/chat_details.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/chat_model.dart';
-import '../../data/services/remote/firebase_firestore.dart';
 import '../../features/auth/ui/views/forget_password.dart';
-import '../../features/booking/cubit/doc_details_cubit.dart';
-import '../../features/booking/ui/doctor_details.dart';
 import '../../features/home/ui/view/nav_view.dart';
 
 class AppRouter {
@@ -18,20 +13,7 @@ class AppRouter {
     switch (settings.name) {
       case Routes.navRoute:
         return MaterialPageRoute(builder: (_) => const NavView());
-      case Routes.doctorDetailsRoute:
-        return MaterialPageRoute(
-          builder: (_) {
-            final args = settings.arguments as Map<String, dynamic>;
-            return BlocProvider<DoctorCubit>(
-              create: (_) => DoctorCubit(getIt.get<FirebaseFirestoreService>())
-                ..fetchDoctorById(args["doctorId"]),
-              child: DoctorDetailsView(
-                doctorId: args['doctorId'],
-                doctorName: args['doctorName'],
-              ),
-            );
-          },
-        );
+      
       case Routes.signup:
         return MaterialPageRoute(builder: (_) => const SignUp());
       case Routes.signin:
