@@ -108,19 +108,19 @@ class AppointmentCubit extends Cubit<AppointmentState> {
     }
   }
 
-  void onRefreshAppointment() {
-    weeklyData = WeeklyBookingData();
+  void _onRefreshAppointment() {
     canceled.clear();
     pending.clear();
     compined.clear();
     completed.clear();
+    weeklyData = WeeklyBookingData();
   }
 
   // ! Get bookings when open the page first time
   Future<void> fetchBookings() async {
     try {
       emit(AppointmentLoading());
-      onRefreshAppointment();
+      _onRefreshAppointment();
       final snapshot = await _doctorDoc;
       if (snapshot.exists) {
         DoctorModel doctor = DoctorModel.fromJson(

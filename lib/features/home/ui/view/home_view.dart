@@ -21,7 +21,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async =>
-          context.read<AppointmentCubit>().onRefreshAppointment(),
+          await context.read<AppointmentCubit>().fetchBookings(),
       child: ListView(
         padding: EdgeInsets.only(
           left: 6.w,

@@ -45,7 +45,7 @@ class BookingTab extends StatelessWidget {
         } else {
           return RefreshIndicator(
             onRefresh: () async =>
-                context.read<AppointmentCubit>().onRefreshAppointment(),
+                await context.read<AppointmentCubit>().fetchBookings(),
             child: ListView.separated(
               itemCount: bookings.length,
               separatorBuilder: (_, __) => SizedBox(height: 1.5.h),
