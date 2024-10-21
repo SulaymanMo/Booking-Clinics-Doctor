@@ -101,7 +101,7 @@ class HomeView extends StatelessWidget {
             ),
           ),
           CustomBarChart(
-            weeklyData: context.read<AppointmentCubit>().weeklyData!,
+            weeklyData: context.read<AppointmentCubit>().weeklyData,
           ),
           SizedBox(height: 4.h),
           ListHeader(

@@ -63,7 +63,10 @@ class ProfileView extends StatelessWidget {
                     SizedBox(height: 2.h),
                     Text(state.model.name, style: context.bold16),
                     SizedBox(height: 0.5.h),
-                    Text(state.model.email, style: context.medium16),
+                    Text(state.model.email,
+                        style: context.medium16?.copyWith(
+                          color: ConstColor.icon.color,
+                        )),
                     SizedBox(height: 4.h),
                     // List of settings
                     const CustomExpansionList(),
