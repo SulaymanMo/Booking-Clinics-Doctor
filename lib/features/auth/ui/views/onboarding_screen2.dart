@@ -92,7 +92,7 @@ class OnboardingDotNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = context.theme.brightness == Brightness.dark;
+    final isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Positioned(
       left: 6.w,
       bottom: 4.5.h,
@@ -100,7 +100,7 @@ class OnboardingDotNavigation extends StatelessWidget {
         controller: controller,
         count: 3,
         effect: ExpandingDotsEffect(
-          dotWidth: 4.w,
+          dotWidth: 3.5.w,
           dotHeight: 1.h,
           activeDotColor: isDark ? ConstColor.primary.color : Colors.black,
         ),
@@ -139,17 +139,17 @@ class SkipButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      // top: context.query.viewPadding.top + 0.5.h,
       left: 6.w,
       bottom: 6.5.h,
       child: TextButton(
-          onPressed: () => onSkip(),
-          child: Text(
-            "Skip",
-            style: context.medium14?.copyWith(
-              color: ConstColor.primary.color,
-            ),
-          )),
+        onPressed: () => onSkip(),
+        child: Text(
+          "Skip",
+          style: context.regular14?.copyWith(
+            color: ConstColor.primary.color,
+          ),
+        ),
+      ),
     );
   }
 }

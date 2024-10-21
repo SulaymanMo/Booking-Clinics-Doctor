@@ -92,6 +92,8 @@ class _SignupFormState extends State<SignupForm> {
               Expanded(
                 child: Input(
                   hint: "Password",
+                  maxLines: 1,
+                  obscureText: true,
                   controller: passwordController,
                 ),
               ),
@@ -99,6 +101,8 @@ class _SignupFormState extends State<SignupForm> {
               Expanded(
                 child: Input(
                   hint: "Confirm",
+                  maxLines: 1,
+                  obscureText: true,
                   controller: passwordController,
                 ),
               ),

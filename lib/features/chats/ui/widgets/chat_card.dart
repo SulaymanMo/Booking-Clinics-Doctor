@@ -24,15 +24,15 @@ class ChatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      borderRadius: BorderRadius.circular(4.w),
+      borderRadius: BorderRadius.circular(10),
       color: MyColors.primary,
       child: InkWell(
-        borderRadius: BorderRadius.circular(4.w),
+        borderRadius: BorderRadius.circular(10),
         onTap: onTap,
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.5.h),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4.w),
+            borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -3,9 +3,12 @@ import 'package:booking_clinics_doctor/features/auth/ui/views/onboarding_screen2
 import 'package:booking_clinics_doctor/features/auth/ui/views/signin.dart';
 import 'package:booking_clinics_doctor/features/auth/ui/views/signup.dart';
 import 'package:booking_clinics_doctor/features/chats/ui/chat_details.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/chat_model.dart';
 import '../../features/auth/ui/views/forget_password.dart';
+import '../../features/chats/cubit/chat_details_cubit.dart';
 import '../../features/home/ui/view/nav_view.dart';
 
 class AppRouter {
@@ -13,7 +16,6 @@ class AppRouter {
     switch (settings.name) {
       case Routes.navRoute:
         return MaterialPageRoute(builder: (_) => const NavView());
-      
       case Routes.signup:
         return MaterialPageRoute(builder: (_) => const SignUp());
       case Routes.signin:
@@ -25,10 +27,16 @@ class AppRouter {
       case Routes.chatDetailsRoute:
         final chatModel = settings.arguments as ChatModel;
         return MaterialPageRoute(
-          builder: (_) => ChatDetailScreen(
-            chatId: chatModel.chatId,
-            chatPartnerName: chatModel.chatPartnerName,
-            chatPartnerId: chatModel.chatPartnerId,
+          builder: (_) => BlocProvider(
+            create: (context) => ChatDetailCubit(
+              FirebaseFirestore.instance,
+              chatModel.chatId,
+            )..listenToMessages(),
+            child: ChatDetailScreen(
+              chatId: chatModel.chatId,
+              chatPartnerName: chatModel.chatPartnerName,
+              chatPartnerId: chatModel.chatPartnerId,
+            ),
           ),
         );
       default:

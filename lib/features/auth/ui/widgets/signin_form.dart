@@ -45,8 +45,10 @@ class _SigninFormState extends State<SigninForm> {
           SizedBox(height: 1.5.h),
           Input(
             controller: passwordController,
-            prefix: Iconsax.lock,
+            maxLines: 1,
             hint: "Password",
+            obscureText: true,
+            prefix: Iconsax.lock,
           ),
           Align(
             alignment: const Alignment(1, 0),

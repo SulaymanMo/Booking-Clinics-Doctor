@@ -23,7 +23,7 @@ class SeeAllView extends StatelessWidget {
             final List<Booking> todayBooking = read.getTodayBookings();
             return RefreshIndicator(
               onRefresh: () async =>
-                  await context.read<AppointmentCubit>().fetchBookings(),
+                  context.read<AppointmentCubit>().onRefreshAppointment(),
               child: ListView.builder(
                 itemCount: todayBooking.length,
                 padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),

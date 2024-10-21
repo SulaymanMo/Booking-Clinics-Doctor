@@ -1,4 +1,3 @@
-import 'package:booking_clinics_doctor/core/common/skeleton.dart';
 import 'package:booking_clinics_doctor/core/constant/const_color.dart';
 import 'package:booking_clinics_doctor/core/constant/const_string.dart';
 import 'package:booking_clinics_doctor/core/constant/extension.dart';
@@ -33,14 +32,7 @@ class ChatListScreen extends StatelessWidget {
         body: BlocBuilder<ChatCubit, ChatState>(
           builder: (context, state) {
             if (state is ChatLoading) {
-              return ListView.separated(
-                itemCount: 7,
-                padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
-                itemBuilder: (_, index) {
-                  return Skeleton(width: double.infinity, height: 8.5.h);
-                },
-                separatorBuilder: (_, index) => SizedBox(height: 1.5.h),
-              );
+              return const Center(child: CircularProgressIndicator());
             }
             if (state is ChatError) {
               return Center(child: Text(state.error));
@@ -51,11 +43,11 @@ class ChatListScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Iconsax.messages, size: 48.sp),
-                      SizedBox(height: 2.h),
+                      Icon(Iconsax.messages, size: 42.sp),
+                      SizedBox(height: 1.5.h),
                       Text(
                         'No chats found',
-                        style: context.medium16?.copyWith(
+                        style: context.medium14?.copyWith(
                           color: ConstColor.icon.color,
                         ),
                       ),
@@ -78,11 +70,9 @@ class ChatListScreen extends StatelessWidget {
                     String chatPartnerId =
                         participants.firstWhere((id) => id != currentUserId);
 
-                    return FutureBuilder<DocumentSnapshot>(
-                      future: FirebaseFirestore.instance
-                          .collection('doctors')
-                          .doc(chatPartnerId)
-                          .get(),
+                    return FutureBuilder<Map<String, dynamic>?>(
+                      future:
+                          context.read<ChatCubit>().getUserData(chatPartnerId),
                       builder: (context, userSnapshot) {
                         if (userSnapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -90,12 +80,11 @@ class ChatListScreen extends StatelessWidget {
                         }
 
                         if (!userSnapshot.hasData ||
-                            !userSnapshot.data!.exists) {
+                            userSnapshot.data == null) {
                           return const ListTile(title: Text('User not found'));
                         }
 
-                        var userData =
-                            userSnapshot.data!.data() as Map<String, dynamic>;
+                        var userData = userSnapshot.data!;
                         String chatPartnerName = userData['name'] ?? 'Unknown';
 
                         return ChatCard(

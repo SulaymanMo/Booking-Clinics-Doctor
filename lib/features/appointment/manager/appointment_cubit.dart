@@ -109,11 +109,11 @@ class AppointmentCubit extends Cubit<AppointmentState> {
   }
 
   void onRefreshAppointment() {
+    weeklyData = WeeklyBookingData();
     canceled.clear();
     pending.clear();
     compined.clear();
     completed.clear();
-    weeklyData = WeeklyBookingData();
   }
 
   // ! Get bookings when open the page first time
