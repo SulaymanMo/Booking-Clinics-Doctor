@@ -16,6 +16,8 @@ class CustomBarChart extends StatelessWidget {
       aspectRatio: 2.0,
       child: BlocBuilder<AppointmentCubit, AppointmentState>(
         builder: (_, state) {
+          if (state is AppointmentLoading) {
+          }
           return BarChart(
             swapAnimationDuration: const Duration(milliseconds: 300),
             BarChartData(
@@ -116,6 +118,7 @@ class CustomBarChart extends StatelessWidget {
               ]
             : [],
       );
+    
     }).toList();
   }
 

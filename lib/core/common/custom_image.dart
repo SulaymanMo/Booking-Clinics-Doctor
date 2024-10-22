@@ -25,20 +25,20 @@ class CustomImage extends StatelessWidget {
       borderRadius: BorderRadius.circular(borderRadius ?? 50.w),
       child: CachedNetworkImage(
         imageUrl: image ?? "",
-        width: width ?? 35.w,
-        height: height ?? 35.w,
+        width: width ?? 28.w,
+        height: height ?? 28.w,
         fit: BoxFit.cover,
         placeholder: (_, url) => SizedBox(
-          width: width ?? 35.w,
-          height: height ?? 35.w,
+          width: width ?? 28.w,
+          height: height ?? 28.w,
           // width: double.infinity,
         ),
         errorWidget: (_, url, error) =>
             errorWidget ??
             Image.asset(
               errorImage ?? MyImages.doctorAvatar,
-              width: width,
-              height: height,
+              width: width ?? 28.w,
+              height: height ?? 28.w,
               fit: BoxFit.cover,
             ),
         errorListener: null,

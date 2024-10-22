@@ -21,7 +21,7 @@ class BookingCard extends StatelessWidget {
           padding: EdgeInsets.all(1.h),
           child: Row(
             children: [
-              CustomImage(image: booking.imageUrl),
+              CustomImage(image: booking.imageUrl, width: 24.w, height: 24.w),
               SizedBox(width: 1.5.h),
               Expanded(
                 child: Column(

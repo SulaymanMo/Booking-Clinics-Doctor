@@ -105,7 +105,7 @@ class HomeView extends StatelessWidget {
           ),
           SizedBox(height: 4.h),
           ListHeader(
-            title: "Today's Bookings",
+            title: "Bookings Today",
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (builder) {
                 return BlocProvider<AppointmentCubit>.value(

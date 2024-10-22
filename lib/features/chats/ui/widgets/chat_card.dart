@@ -55,6 +55,7 @@ class ChatCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
+                  SizedBox(width: 2.w),
                   Text(
                     lastMessageTime,
                     style: context.regular14!.copyWith(

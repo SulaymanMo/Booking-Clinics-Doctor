@@ -20,7 +20,7 @@ class ProfileImage extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         children: [
           CircleAvatar(
-            radius: 20.w,
+            radius: 28.w,
             backgroundImage: image,
             backgroundColor: ConstColor.iconDark.color,
             child: image == null
@@ -36,7 +36,7 @@ class ProfileImage extends StatelessWidget {
                 color: ConstColor.main.color,
                 borderRadius: BorderRadius.circular(3.w),
               ),
-              child: const Icon(Icons.edit, color: Colors.white),
+              child: const Icon(Icons.edit),
             ),
           ),
         ],

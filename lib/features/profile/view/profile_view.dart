@@ -32,7 +32,11 @@ class ProfileView extends StatelessWidget {
                     SizedBox(height: 2.h),
                     Stack(
                       children: [
-                        CustomImage(image: state.model.imageUrl),
+                        CustomImage(
+                          image: state.model.imageUrl,
+                          width: 38.w,
+                          height: 38.w,
+                        ),
                         Positioned(
                           right: 0,
                           bottom: 1.w,

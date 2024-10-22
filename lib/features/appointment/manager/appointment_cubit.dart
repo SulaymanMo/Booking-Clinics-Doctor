@@ -109,9 +109,10 @@ class AppointmentCubit extends Cubit<AppointmentState> {
   }
 
   void _onRefreshAppointment() {
-    canceled.clear();
+    index = null;
     pending.clear();
     compined.clear();
+    canceled.clear();
     completed.clear();
     weeklyData = WeeklyBookingData();
   }
@@ -128,8 +129,8 @@ class AppointmentCubit extends Cubit<AppointmentState> {
         );
         await _updateStatus(doctor);
         _filterBookings(doctor.bookings);
-        emit(AppointmentSuccess());
         debugPrint("${pending.length}|${completed.length}|${canceled.length}");
+        emit(AppointmentSuccess());
       }
     } catch (e) {
       emit(AppointmentFailure("$e"));
