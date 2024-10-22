@@ -1,9 +1,9 @@
+import 'package:booking_clinics_doctor/core/common/custom_image.dart';
 import 'package:booking_clinics_doctor/core/common/loading_indicator.dart';
 import 'package:booking_clinics_doctor/features/profile/manager/image_manager/pick_image_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
-import '../../../core/common/custom_network_img.dart';
 import '../../../core/helper/logout_btn_sheet.dart';
 import 'edit_your_profile.dart';
 import '../manager/profile_manager/profile_cubit.dart';
@@ -20,7 +20,6 @@ class ProfileView extends StatelessWidget {
       body: Align(
         alignment: const Alignment(0, 0.25),
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
           child: BlocConsumer<ProfileCubit, ProfileState>(
             listener: (_, state) {
               if (state is UpdateProfileLoading) {}
@@ -30,14 +29,10 @@ class ProfileView extends StatelessWidget {
                 return Column(
                   children: [
                     Text("Profile", style: context.semi20),
-                    SizedBox(height: 4.h),
+                    SizedBox(height: 2.h),
                     Stack(
                       children: [
-                        CustomNetworkImage(
-                          imageUrl: state.model.imageUrl,
-                          height: 16.h,
-                          width: 16.h,
-                        ),
+                        CustomImage(image: state.model.imageUrl),
                         Positioned(
                           right: 0,
                           bottom: 1.w,
@@ -66,6 +61,7 @@ class ProfileView extends StatelessWidget {
                     Text(
                       state.model.email,
                       style: context.medium14?.copyWith(
+                        fontSize: 14.5.sp,
                         color: ConstColor.icon.color,
                       ),
                     ),
@@ -85,10 +81,15 @@ class ProfileView extends StatelessWidget {
                       title: Text(
                         "Log Out",
                         style: TextStyle(
-                            fontSize: 15.sp, fontWeight: FontWeight.w400),
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                       leading: const Icon(Icons.logout_outlined),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 2.w),
+                      contentPadding: EdgeInsets.symmetric(
+                        vertical: 0.5.h,
+                        horizontal: 6.w,
+                      ),
                     ),
                   ],
                 );

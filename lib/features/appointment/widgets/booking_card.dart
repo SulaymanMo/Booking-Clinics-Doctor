@@ -1,9 +1,8 @@
+import 'package:booking_clinics_doctor/core/common/custom_image.dart';
 import 'package:booking_clinics_doctor/core/constant/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../../../core/common/custom_network_img.dart';
 import '../../../core/constant/const_color.dart';
-import '../../../core/constant/images_path.dart';
 import '../../../data/models/booking.dart';
 
 class BookingCard extends StatelessWidget {
@@ -18,6 +17,7 @@ class BookingCard extends StatelessWidget {
         padding: EdgeInsets.all(4.w),
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             IntrinsicHeight(
@@ -25,7 +25,7 @@ class BookingCard extends StatelessWidget {
                 children: [
                   Container(
                     padding: EdgeInsets.symmetric(
-                      horizontal: 2.w,
+                      horizontal: 4.w,
                       vertical: 0.5.h,
                     ),
                     decoration: BoxDecoration(
@@ -57,14 +57,12 @@ class BookingCard extends StatelessWidget {
             Divider(height: 4.h),
             Row(
               children: [
-                CustomNetworkImage(
-                  imageUrl: booking.imageUrl,
-                  fallbackAsset: MyImages.doctorAvatar,
-                  height: 35.w,
-                  width: 35.w,
-                  borderRadius: 50.w,
+                CustomImage(
+                  image: booking.imageUrl,
+                  width: 28.w,
+                  height: 28.w,
                 ),
-                SizedBox(width: 1.w),
+                SizedBox(width: 2.w),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(left: 2.w),
@@ -78,7 +76,7 @@ class BookingCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: context.bold16,
                         ),
-                        SizedBox(height: 2.w),
+                        SizedBox(height: 1.w),
                         // Specialization
                         Text(booking.specialty, style: context.regular14),
                         SizedBox(height: 1.w),

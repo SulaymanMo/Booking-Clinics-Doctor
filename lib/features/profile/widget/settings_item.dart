@@ -51,43 +51,31 @@ class _SettingsItemState extends State<SettingsItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // ListTile(
-        //   title: Text(
-        //     "Language",
-        //     style: context.regular14,
-        //   ),
-        //   trailing: const DropDown(titles: ["EN", "AR"]),
-        // ),
-
-        ListTile(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Theme Mode", style: context.semi14),
-              DropDown(
-                value: _value,
-                onSelect: (val) {
-                  if (val != null) {
-                    // ! Update the theme using the ThemeCubit
-                    final themeMode = _indexToThemeMode(val);
-                    context.read<ThemeCubit>().toggleTheme(themeMode);
-                    setState(() {
-                      _value = val;
-                    });
-                  }
-                },
-                titles: const ["Light Mode", "Dark Mode", "System Default"],
-              ),
-            ],
+    return ListTile(
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text("Theme Mode", style: context.semi14),
+          DropDown(
+            value: _value,
+            onSelect: (val) {
+              if (val != null) {
+                // ! Update the theme using the ThemeCubit
+                final themeMode = _indexToThemeMode(val);
+                context.read<ThemeCubit>().toggleTheme(themeMode);
+                setState(() {
+                  _value = val;
+                });
+              }
+            },
+            titles: const ["Light Mode", "Dark Mode", "System Default"],
           ),
-          subtitle: Text(
-            "Experience Hagzy in dark theme",
-            style: context.regular14?.copyWith(color: ConstColor.icon.color),
-          ),
-        ),
-      ],
+        ],
+      ),
+      subtitle: Text(
+        "Experience Hagzy in dark theme",
+        style: context.regular14?.copyWith(color: ConstColor.icon.color),
+      ),
     );
   }
 }

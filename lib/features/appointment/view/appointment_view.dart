@@ -35,7 +35,7 @@ class _AppointmentViewState extends State<AppointmentView>
           automaticallyImplyLeading: false,
           bottom: TabBar(
             controller: _tabController,
-            padding: EdgeInsets.only(left: 4.w, right: 4.w, bottom: 1.h),
+            padding: EdgeInsets.only(left: 6.w, right: 6.w, bottom: 1.h),
             tabs: List.generate(
               _status.length,
               (index) => Tab(text: _status[index]),

@@ -274,7 +274,7 @@ class _EditYourProfileState extends State<EditYourProfile> {
       data["workingHours"] = _workingHoursController.text.trim();
     }
     if (_experienceController.text.trim().isNotEmpty) {
-      data["experience"] = _experienceController.text.trim();
+      data["experience"] = int.parse(_experienceController.text.trim());
     }
     if (_specialityController.text.trim().isNotEmpty) {
       data["speciality"] = _specialityController.text.trim();

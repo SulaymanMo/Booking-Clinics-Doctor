@@ -50,9 +50,9 @@ class BookingTab extends StatelessWidget {
               itemCount: bookings.length,
               separatorBuilder: (_, __) => SizedBox(height: 1.5.h),
               padding: EdgeInsets.only(
-                top: 1.h,
-                left: 4.w,
-                right: 4.w,
+                top: 2.h,
+                left: 6.w,
+                right: 6.w,
                 bottom: 2.h,
               ),
               itemBuilder: (_, index) {
@@ -69,7 +69,7 @@ class BookingTab extends StatelessWidget {
                           bottom: 4.h,
                         ),
                         child: Text(
-                          "Hint: $status Bookings are automatically deleted after a week.",
+                          "$status Bookings are automatically deleted after a week.",
                           style: context.regular14?.copyWith(
                             color: ConstColor.icon.color,
                           ),

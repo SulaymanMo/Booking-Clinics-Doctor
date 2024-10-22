@@ -51,12 +51,15 @@ class _CustomExpansionListState extends State<CustomExpansionList> {
           value: index,
           canTapOnHeader: true,
           backgroundColor: context.theme.brightness == Brightness.light
-              ? Colors.white
-              : ConstColor.dark.color,
+              ? ConstColor.secondary.color
+              : ConstColor.iconDark.color,
           headerBuilder: (_, isExpanded) {
             return ListTile(
               leading: Icon(_icons[index]),
-              contentPadding: EdgeInsets.symmetric(horizontal: 2.w),
+              contentPadding: EdgeInsets.symmetric(
+                vertical: 0.5.h,
+                horizontal: 6.w,
+              ),
               title: Text(
                 _headers[index],
                 style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w400),
@@ -64,7 +67,10 @@ class _CustomExpansionListState extends State<CustomExpansionList> {
             );
           },
           body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
+            padding: EdgeInsets.symmetric(
+              vertical: 0.5.h,
+              horizontal: 6.w,
+            ),
             child: _widgets[index],
           ),
         ),
